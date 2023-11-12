@@ -1,4 +1,5 @@
 import ReactStars from "react-rating-stars-component";
+import { Carousel } from "react-bootstrap"; // Importa el componente Carousel de Bootstrap
 
 const Character = ({ character }) => {
   return (
@@ -19,32 +20,37 @@ const Character = ({ character }) => {
             padding: "15px", // Ajusta el relleno según sea necesario
           }}
         >
-          <div
-            className="row"
-            style={{
-              backgroundColor: "#ffffff",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Agrega una sombra sutil
-              borderRadius: "10px", // Agrega bordes redondeados
-              padding: "15px", // Ajusta el relleno según sea necesario
-            }}
-          >
-            {character.images.map((image, index) => (
-              <div
-                key={index}
-                className={`col-md-${12 / character.images.length}`}
-              >
+          <div className="row justify-content-center">
+            {character.images.length > 1 ? ( // Verifica si hay más de una imagen
+              <Carousel>
+                {character.images.map((image, index) => (
+                  <Carousel.Item key={index}>
+                    <img
+                      src={image}
+                      alt={`${character.title} Image ${index + 1}`}
+                      className="d-block w-100"
+                      style={{
+                        borderRadius: "100%",
+                        height: "auto", // Hace que la altura se ajuste automáticamente
+                      }}
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            ) : (
+              <div className="col-md-12 text-center">
                 <img
+                  src={character.images[0]}
+                  alt={`${character.title} Image 1`}
                   style={{
                     borderRadius: "100%",
                     width: "10rem",
                     height: "10rem",
                     border: "4px solid #000000",
                   }}
-                  src={image}
-                  alt={`${character.title} Image ${index + 1}`}
                 />
               </div>
-            ))}
+            )}
           </div>
 
           <br></br>

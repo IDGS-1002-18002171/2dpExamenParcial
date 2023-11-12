@@ -152,3 +152,11 @@ body {
   border: 1px solid #1ba94c;
   color: #1ba94c;
 }
+.carousel-control-prev,
+.carousel-control-next {
+  color: blue;
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  color: blue; 
+}
