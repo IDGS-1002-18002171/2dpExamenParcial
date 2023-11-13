@@ -100,6 +100,7 @@ const ProductList = () => {
               src={imagenNotFound}
               alt="Sin resultados"
               className="img-home"
+              style={{ width: "80%", height: "auto" }}
             />
           </>
         )}

@@ -10,62 +10,41 @@ const Characters = ({ characters }) => {
   return (
     <div className="characters">
       <div className="container-characters">
-        {
-          /*Recorriendo los datos y mostando los nombres de los personajes*/
-          // eslint-disable-next-line react/prop-types
-          characters.map((character, index) => (
-            <div
-              className="character-container"
-              key={index}
-              onClick={() => veerDetalles(index + 1)}
-            >
-              <div>
-                <img
-                  style={{
-                    borderRadius: "100%",
-                    width: "10rem",
-                    height: "10rem",
-                    border: "4px solid #000000", // Ajusta el grosor y color del borde según tus preferencias
-                  }}
-                  src={character.thumbnail}
-                  alt={character.tittle}
+        {characters.map((character, index) => (
+          <div
+            className="character-container"
+            key={index}
+            onClick={() => veerDetalles(index + 1)}
+          >
+            <div className="character-image-container text-center col-md-4">
+              <img
+                className="rounded-circle character-image"
+                src={character.thumbnail}
+                alt={character.title}
+              />
+            </div>
+            <div className="character-details col-md-8">
+              <div className="d-flex justify-content-between">
+                <h5 style={{ fontSize: "21px" }}>{character.title}</h5>
+                <span style={{ fontSize: "15px" }}>{character.category}</span>
+              </div>
+              <p style={{ fontSize: "13px", margin: "5px 0" }}>
+                {character.description}
+              </p>
+              <br />
+              <div className="d-flex justify-content-between">
+                <h6>${character.price}</h6>
+                <ReactStars
+                  count={5}
+                  value={character.rating}
+                  size={20}
+                  edit={false}
+                  activeColor="#ffd700"
                 />
               </div>
-              <div>
-                <div className="row">
-                  <div className="d-flex justify-content-start">
-                    <h5>{character.title}</h5>
-                  </div>
-                  <div className="d-flex justify-content-end">
-                    <span>{character.category}</span>
-                  </div>
-                </div>
-                <br></br>
-                <div className="row">
-                  <p>
-                    <span>{character.description}</span>
-                  </p>
-                </div>
-                <br></br>
-                <div className="row">
-                  <div className="d-flex justify-content-start">
-                    <h6>${character.price}</h6>
-                  </div>
-                  <div className="d-flex justify-content-end">
-                    {/* Utilizamos ReactStars para mostrar la calificación en forma de estrellas */}
-                    <ReactStars
-                      count={5}
-                      value={character.rating}
-                      size={24}
-                      edit={false}
-                      activeColor="#ffd700" // Color de las estrellas llenas
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </div>
   );
